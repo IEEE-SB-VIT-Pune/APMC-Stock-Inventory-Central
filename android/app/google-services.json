@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "867580520387",
+    "firebase_url": "https://inventory-abced.firebaseio.com",
+    "project_id": "inventory-abced",
+    "storage_bucket": "inventory-abced.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:867580520387:android:c94caefed93e8ecf87bf76",
+        "android_client_info": {
+          "package_name": "com.example.central"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "867580520387-arsfsv2ci3io8l88nosjaco7d2p0kdih.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFDZ_17wPKXQs1hv1V7_piQPNSkYz9Vbc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "867580520387-arsfsv2ci3io8l88nosjaco7d2p0kdih.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
