@@ -1,7 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:central/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'package:central/home.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key}) : super(key: key);
@@ -18,11 +20,6 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController _otpController = TextEditingController();
   TextEditingController pwdInputController;
   FirebaseUser _firebaseUser;
-  String _status = '';
-
-  AuthCredential _phoneAuthCredential;
-  String _verificationId;
-  int _code;
 
   Future registerUser(
     String phone,
@@ -50,94 +47,45 @@ class _LoginPageState extends State<LoginPage> {
           print('In verificationFailed');
           print(exception.message);
         },
-        codeSent: (String verificationId, [int forceResendingToken]) {
-          print('In codeSent');
-          print(phone);
-
-          showDialog(
-              context: context,
-              barrierDismissible: true,
-              builder: (contextDialog) => Dialog(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0)),
-                  child: Container(
-                    height: 250,
-                    width: 400,
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Enter Passcode',
-                            style: TextStyle(fontSize: 20),
-                          ),
-                          SizedBox(height: 20),
-                          TextField(
-                            // autofocus: true,
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Colors.grey[100],
-                              hintText: '* * * * * *',
-                              contentPadding:
-                                  new EdgeInsets.symmetric(horizontal: 20.0),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.green),
-                              ),
-                            ),
-                            keyboardType: TextInputType.number,
-                            maxLength: 6,
-                            controller: _otpController,
-                          ),
-                          SizedBox(height: 20),
-                          SizedBox(
-                            width: 300.0,
-                            child: RaisedButton(
-                              onPressed: () async {
-                                var _credential =
-                                    PhoneAuthProvider.getCredential(
-                                        verificationId: verificationId,
-                                        smsCode: _otpController.text.trim());
-                                FirebaseAuth.instance
-                                    .signInWithCredential(_credential)
-                                    .then((result) async {
-                                  print('Uid:' + result.uid);
-                                  _firebaseUser = result;
-
-                                  Navigator.of(contextDialog).pop();
-
-                                  // Navigator.of(context).pop();
-
-                                  Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => HomePage()));
-                                }).catchError((e) {
-                                  print(e);
-                                });
-                              },
-                              child: Text(
-                                "OK",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              color: Color(0xff57c89f),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  )));
-        },
+        codeSent: codesent,
         codeAutoRetrievalTimeout: (String verificationId) {
           print('In codeAutoRetrievalTimeout');
           verificationId = verificationId;
           print(verificationId);
           print('TimeOut');
         });
+  }
+
+  codesent(String verificationId, [int forceResendingToken]) async {
+    print('In codeSent');
+    var _credential = PhoneAuthProvider.getCredential(
+        verificationId: verificationId, smsCode: _otpController.text.trim());
+    FirebaseAuth.instance
+        .signInWithCredential(_credential)
+        .then((result) async {
+      print('Uid:' + result.uid);
+      _firebaseUser = result;
+
+      // Navigator.of(context).pop();
+
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => HomePage()));
+    }).catchError((e) {
+      print(e);
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Enter Correct Passcode!'),
+          );
+        },
+      );
+      Timer(
+          Duration(seconds: 1),
+          () => {
+                Navigator.of(context).pop(),
+              });
+    });
   }
 
   @override
@@ -162,10 +110,10 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(
               height: 100,
             ),
-            // TextFormField(
-            //   controller: _otpController,
-            //   decoration: InputDecoration(labelText: 'passcode'),
-            // ),
+            TextFormField(
+              controller: _otpController,
+              decoration: InputDecoration(labelText: 'passcode'),
+            ),
             SizedBox(
               height: 10,
             ),
