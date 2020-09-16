@@ -1,5 +1,8 @@
 import 'dart:async';
+import 'dart:math';
 
+import 'package:central/UI/animation.dart';
+import 'package:central/UI/decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -13,10 +16,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final GlobalKey<FormState> _loginFormKey = GlobalKey<FormState>();
-  // TextEditingController emailInputController;
-
-  // TextEditingController _phoneNumberController = TextEditingController();
   TextEditingController _otpController = TextEditingController();
   TextEditingController pwdInputController;
   FirebaseUser _firebaseUser;
@@ -73,6 +72,7 @@ class _LoginPageState extends State<LoginPage> {
     }).catchError((e) {
       print(e);
       showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
@@ -104,30 +104,157 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
-      body: Center(
-        child: Column(
+      body: Container(
+        constraints: BoxConstraints.expand(),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+              'assets/images/login_bg.jpg',
+            ),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Stack(
           children: [
-            SizedBox(
-              height: 100,
+            WavyHeaderImage(
+              color1: Color(0xffFF7979),
+              color2: Color(0xffFF7979),
+              color3: Color(0xffFF7979),
             ),
-            TextFormField(
-              controller: _otpController,
-              decoration: InputDecoration(labelText: 'passcode'),
+            RotatedBox(
+              quarterTurns: 2,
+              child: AnimatedWave(
+                height: 160,
+                speed: 0.8,
+              ),
             ),
-            SizedBox(
-              height: 10,
+            RotatedBox(
+              quarterTurns: 2,
+              child: AnimatedWave(
+                height: 100,
+                speed: 0.8,
+                offset: pi,
+              ),
             ),
-            RaisedButton(
-                child: Text('Login'),
-                onPressed: () {
-                  registerUser('1212121212', context);
-                  if (_firebaseUser != null) {
-                    _otpController = TextEditingController();
-                    // Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    //   builder: (BuildContext context) => HomePage(),
-                    // ));
-                  }
-                })
+            RotatedBox(
+              quarterTurns: 2,
+              child: AnimatedWave(
+                height: 200,
+                speed: 0.8,
+                offset: pi / 2,
+              ),
+            ),
+            Positioned(
+              left: ((w * 0.15) / 2),
+              top: h * 0.31,
+              child: FadeAnimation(
+                1.0,
+                Container(
+                  height: h / 2,
+                  width: w * 0.85,
+                  decoration: new BoxDecoration(
+                    boxShadow: [
+                      //background color of box
+                      BoxShadow(
+                        color: Colors.blueGrey[200],
+                        blurRadius: 15.0, // soften the shadow
+                        spreadRadius: 5.0, //extend the shadow
+                        offset: Offset(
+                          0.0, // Move to right 10  horizontally
+                          10.0, // Move to bottom 10 Vertically
+                        ),
+                      )
+                    ],
+                    color: Colors.white,
+                    borderRadius: new BorderRadius.only(
+                      bottomRight: const Radius.circular(40.0),
+                      topRight: const Radius.circular(40.0),
+                      bottomLeft: const Radius.circular(40.0),
+                      topLeft: const Radius.circular(40.0),
+                    ),
+                  ),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 0,
+                  ),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 65,
+                        ),
+                        Text(
+                          "Login",
+                          style: TextStyle(
+                              color: Colors.black54,
+                              fontSize: 34,
+                              fontWeight: FontWeight.w900),
+                        ),
+                        SizedBox(
+                          height: 50,
+                        ),
+                        Container(
+                          width: w * 0.7,
+                          child: TextFormField(
+                            // key: widget.key,
+                            maxLength: 6,
+                            keyboardType: TextInputType.number,
+                            maxLines: 1,
+                            controller: _otpController,
+                            // validator: widget.validator,
+                            textAlign: TextAlign.center,
+                            decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(30)),
+                                borderSide: BorderSide(color: Colors.grey[400]),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(30)),
+                                borderSide: BorderSide(color: Colors.grey[400]),
+                              ),
+                              filled: true,
+                              fillColor: Colors.grey[100],
+                              labelText: 'Passcode',
+                              contentPadding: new EdgeInsets.symmetric(
+                                  vertical: 13.0, horizontal: 20.0),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          height: 45,
+                          width: w / 3,
+                          child: FlatButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(23.0),
+                                side: BorderSide(color: Colors.white)),
+                            //color: Color(0xff57c89f),
+                            color: Colors.black87,
+                            textColor: Colors.white,
+                            padding: EdgeInsets.all(8.0),
+                            onPressed: () {
+                              registerUser('1212121212', context);
+                              if (_firebaseUser != null) {
+                                _otpController = TextEditingController();
+                              }
+                            },
+                            child: Text('Login'),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 120,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

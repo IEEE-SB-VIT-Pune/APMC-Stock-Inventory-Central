@@ -3,6 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class WavyHeaderImage extends StatelessWidget {
+  Color color1;
+  Color color2;
+  Color color3;
+
+  WavyHeaderImage({
+    @required this.color1,
+    @required this.color2,
+    @required this.color3,
+  });
   @override
   Widget build(BuildContext context) {
     return ClipPath(
@@ -14,8 +23,9 @@ class WavyHeaderImage extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: <Color>[
-              Color(0xff57c89f),
-              Color(0xff8df0a9),
+              color1,
+              color2,
+              color3,
               // Colors.grey[200],
             ],
           ),

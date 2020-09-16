@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Admin Inventory',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.black87,
       ),
       home: Splash(),
       debugShowCheckedModeBanner: false,
@@ -66,22 +66,26 @@ class _SplashState extends State<Splash> {
             child: Stack(
               children: <Widget>[
                 Positioned(
-                  top: 235,
+                  top: MediaQuery.of(context).size.height / 2.1,
                   child: Image.asset(
-                    'assets/images/splashmaskbluecrop.jpeg',
+                    'assets/images/splash_.png',
                     width: MediaQuery.of(context).size.width,
                   ),
                 ),
                 Positioned(
-                  top: 180,
+                  top: MediaQuery.of(context).size.height / 3.5,
                   left: (MediaQuery.of(context).size.width - 90) / 2,
                   child: Image.asset(
-                    'assets/images/loader2.gif',
+                    'assets/images/blackloader2.gif',
                     height: 90,
                     width: 90,
                   ),
                 ),
-                WavyHeaderImage(),
+                WavyHeaderImage(
+                  color1: Color(0xffFF7979),
+                  color2: Color(0xffFF7979),
+                  color3: Colors.black54,
+                ),
                 RotatedBox(
                   quarterTurns: 2,
                   child: AnimatedWave(
