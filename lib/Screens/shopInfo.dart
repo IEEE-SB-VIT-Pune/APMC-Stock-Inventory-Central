@@ -1,8 +1,6 @@
 import 'package:central/Models/transaction.dart';
 import 'package:central/Screens/authorize.dart';
-import 'package:central/Screens/home.dart';
 import 'package:central/Screens/transactionDetails.dart';
-import 'package:central/Services/database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -96,35 +94,67 @@ class _ShopInfoState extends State<ShopInfo> {
                           children: snapshot.data.documents
                               .map((DocumentSnapshot document) {
                             print(document.data);
-                            return InkWell(
-                              child: ListTile(
-                                title: Text(document['Name']),
-                                trailing: Container(
-                                  width: 100,
-                                  child: Text(
-                                    DateTime.fromMicrosecondsSinceEpoch(
-                                            document['time']
-                                                .microsecondsSinceEpoch)
-                                        .toString(),
+                            return Container(
+                              margin: const EdgeInsets.all(8.0),
+                              decoration: BoxDecoration(
+                                  color: Color(0xFFE9E9E9),
+                                  borderRadius: BorderRadius.circular(15.0)),
+                              child: InkWell(
+                                child: ListTile(
+                                  title: Text(document['Name']),
+                                  trailing: Container(
+                                    width: 100,
+                                    child: Text(
+                                      DateTime.fromMicrosecondsSinceEpoch(
+                                              document['time']
+                                                  .microsecondsSinceEpoch)
+                                          .toString(),
+                                    ),
                                   ),
-                                ),
-                                onTap: () {
-                                  print(document.data);
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (BuildContext context) => TransactionDetails(
-                                        Transactions(
-                                          document['Name'] ?? 'Name',
-                                          document['Payment Mode'] ?? 'Payment Mode',
-                                          document['Phone Number'] ?? 'Phone Number',
-                                          document['time'] ?? 'Time',
-                                          document['items'] ?? 'items',
+                                  onLongPress: () {
+                                    print('Delete');
+                                    showDialog(
+                                      context: context,
+                                      builder: (_) => AlertDialog(
+                                        content: Text('Delete the transactions'),
+                                        actions: [
+                                          FlatButton(
+                                            child: Text('Cancel'),
+                                            onPressed: () {
+                                             Navigator.of(context).pop();
+                                            },
+                                          ),
+                                          FlatButton(
+                                            child: Text('Delete'),
+                                            onPressed: () {
+                                            print('Deleting');
+                                            },
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                  onTap: () {
+                                    print(document.data);
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                              TransactionDetails(
+                                          Transactions(
+                                            document['Name'] ?? 'Name',
+                                            document['Payment Option'] ??
+                                                'Payment Mode',
+                                            document['Phone Number'] ??
+                                                'Phone Number',
+                                            document['time'] ?? 'Time',
+                                            document['items'] ?? 'items',
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  );
-                                },
+                                    );
+                                  },
+                                ),
                               ),
                             );
                           }).toList(),
