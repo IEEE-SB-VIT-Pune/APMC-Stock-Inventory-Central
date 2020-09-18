@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:central/UI/decoration.dart';
-import 'package:central/authorize.dart';
-import 'package:central/home.dart';
+import 'package:central/Screens/authorize.dart';
+import 'package:central/Screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

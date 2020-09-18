@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'package:central/home.dart';
+import 'package:central/Screens/home.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key}) : super(key: key);
@@ -120,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
             RaisedButton(
                 child: Text('Login'),
                 onPressed: () {
-                  registerUser('1212121212', context);
+                  registerUser('1515151515', context);
                   if (_firebaseUser != null) {
                     _otpController = TextEditingController();
                     // Navigator.of(context).pushReplacement(MaterialPageRoute(
