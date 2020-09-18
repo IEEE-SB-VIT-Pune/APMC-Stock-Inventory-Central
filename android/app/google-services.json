@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "867580520387",
-    "firebase_url": "https://inventory-abced.firebaseio.com",
-    "project_id": "inventory-abced",
-    "storage_bucket": "inventory-abced.appspot.com"
+    "project_number": "13856467388",
+    "firebase_url": "https://apmc-stock-central.firebaseio.com",
+    "project_id": "apmc-stock-central",
+    "storage_bucket": "apmc-stock-central.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:867580520387:android:c94caefed93e8ecf87bf76",
+        "mobilesdk_app_id": "1:13856467388:android:62c684377fd5cd81bda3b9",
         "android_client_info": {
           "package_name": "com.example.central"
         }
       },
       "oauth_client": [
         {
-          "client_id": "867580520387-arsfsv2ci3io8l88nosjaco7d2p0kdih.apps.googleusercontent.com",
+          "client_id": "13856467388-2aonme67h4643aa5ii4c9pkn85s5ou9o.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDFDZ_17wPKXQs1hv1V7_piQPNSkYz9Vbc"
+          "current_key": "AIzaSyBMArvnEuCU4Jsrlh4fuIXGs92f66wQojM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "867580520387-arsfsv2ci3io8l88nosjaco7d2p0kdih.apps.googleusercontent.com",
+              "client_id": "13856467388-2aonme67h4643aa5ii4c9pkn85s5ou9o.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
