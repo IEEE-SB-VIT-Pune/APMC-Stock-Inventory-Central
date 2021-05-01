@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "913050345247",
+    "firebase_url": "https://kadaminventory.firebaseio.com",
+    "project_id": "kadaminventory",
+    "storage_bucket": "kadaminventory.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:913050345247:android:3a16f72a146e4bafb35a2a",
+        "android_client_info": {
+          "package_name": "com.example.inventory_central"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "913050345247-1p32m9ufoqejfsqgha42g05m9humvcol.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.inventory_central",
+            "certificate_hash": "4965387180befd50143be4666e1f72a14dbf1176"
+          }
+        },
+        {
+          "client_id": "913050345247-emhllkak43pcuk3551c6q90bddp2c0bh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJ5FyLaJ2d8Sw3OUx-3mvIf6FMOEx0KTk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "913050345247-emhllkak43pcuk3551c6q90bddp2c0bh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
