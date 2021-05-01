@@ -62,8 +62,8 @@ Features included:
 ### Developers
 
 <ul>
- <li><a href="https://www.linkedin.com/in/sanket-bijawe/" > Sanket Bijawe</a> 
  <li><a href="https://www.linkedin.com/in/prapti-patil-02ba72192/" > Prapti Patil </a> 
  <li><a href="https://www.linkedin.com/in/anjali-asolkar/"> Anjali Asolkar </a> 
- <li><a href="https://www.linkedin.com/in/sarthak-vaishnav-038a57174/" > Sarthak Vaishnav </a> 
+ <li><a href="https://www.linkedin.com/in/sarthak-vaishnav-038a57174/" > Sarthak Vaishnav </a>
+ <li><a href="https://www.linkedin.com/in/sanket-bijawe/" > Sanket Bijawe</a> 
 </ul>
