@@ -49,6 +49,8 @@ Features included:
     <td>Firebase</td>
   </tr>  
 </table>
+<br>
+<img src = "https://github.com/IEEE-SB-VIT-Pune/APMC-Stock-Inventory-Central/blob/master/assets/images/Database_schema.png" alt="Database Schema" width="630" height="420">
 
 ### Dependencies
 <ul>
@@ -65,5 +67,3 @@ Features included:
  <li><a href="https://www.linkedin.com/in/anjali-asolkar/"> Anjali Asolkar </a> 
  <li><a href="https://www.linkedin.com/in/sarthak-vaishnav-038a57174/" > Sarthak Vaishnav </a> 
 </ul>
-
-
